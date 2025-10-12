@@ -38,22 +38,22 @@ export default function Home() {
     {
       icon: <Shield className="h-7 w-7" />,
       title: "Secure & Reliable",
-      description: "Your invoice data is stored securely with enterprise-grade protection"
+      description: "Your invoice data is stored locally and securely with enterprise-grade protection"
     }
   ];
 
   const benefits = [
     {
       icon: <Clock className="h-5 w-5" />,
-      text: "Save 90% of your invoicing time"
+      text: "Save 95% of your invoicing time"
     },
     {
       icon: <Star className="h-5 w-5" />,
-      text: "Get paid 40% faster on average"
+      text: "Get paid 60% faster on average"
     },
     {
       icon: <Shield className="h-5 w-5" />,
-      text: "100% secure and private"
+      text: "100% secure and private. No data is stored on our servers."
     }
   ];
 
@@ -67,13 +67,8 @@ export default function Home() {
       {/* Header */}
       <header className="relative z-10 container mx-auto px-6 py-6">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="h-10 w-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
-              <FileText className="h-6 w-6 text-white" />
-            </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent" style={{ fontFamily: 'Playfair Display' }}>
-              WPEG: Free Invoice
-            </span>
+        <div className="flex items-center space-x-3">
+            <a href='/'><img src="/wpeg-invoice-logo.png" alt="WPEG Invoice Logo" className="scale-50" /></a>
           </div>
           <Button 
             variant="outline" 
@@ -266,11 +261,8 @@ export default function Home() {
       <footer className="relative z-10 container mx-auto px-6 py-12 border-t border-gray-200/50">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center space-x-3 mb-6 md:mb-0">
-            <div className="h-8 w-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
-              <FileText className="h-5 w-5 text-white" />
-            </div>
             <span className="text-xl font-bold text-gray-900" style={{ fontFamily: 'Playfair Display' }}>
-              WPEG: Free Invoice
+              WPEG: Free Invoice Generator
             </span>
           </div>
           <div className="text-center md:text-right">
