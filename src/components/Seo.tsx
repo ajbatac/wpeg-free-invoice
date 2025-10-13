@@ -1,5 +1,5 @@
 
-import React from 'react';
+
 
 interface SeoProps {
   title: string;
