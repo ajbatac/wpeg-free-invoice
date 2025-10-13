@@ -1,248 +1,5 @@
 import { EventEmitter } from "node:events";
 import { Writable } from "node:stream";
-// @__NO_SIDE_EFFECTS__
-function createNotImplementedError(name) {
-  return new Error(`[unenv] ${name} is not implemented yet!`);
-}
-// @__NO_SIDE_EFFECTS__
-function notImplemented(name) {
-  const fn = () => {
-    throw /* @__PURE__ */ createNotImplementedError(name);
-  };
-  return Object.assign(fn, { __unenv__: true });
-}
-// @__NO_SIDE_EFFECTS__
-function notImplementedClass(name) {
-  return class {
-    __unenv__ = true;
-    constructor() {
-      throw new Error(`[unenv] ${name} is not implemented yet!`);
-    }
-  };
-}
-const _timeOrigin = globalThis.performance?.timeOrigin ?? Date.now();
-const _performanceNow = globalThis.performance?.now ? globalThis.performance.now.bind(globalThis.performance) : () => Date.now() - _timeOrigin;
-const nodeTiming = {
-  name: "node",
-  entryType: "node",
-  startTime: 0,
-  duration: 0,
-  nodeStart: 0,
-  v8Start: 0,
-  bootstrapComplete: 0,
-  environment: 0,
-  loopStart: 0,
-  loopExit: 0,
-  idleTime: 0,
-  uvMetricsInfo: {
-    loopCount: 0,
-    events: 0,
-    eventsWaiting: 0
-  },
-  detail: void 0,
-  toJSON() {
-    return this;
-  }
-};
-class PerformanceEntry {
-  __unenv__ = true;
-  detail;
-  entryType = "event";
-  name;
-  startTime;
-  constructor(name, options) {
-    this.name = name;
-    this.startTime = options?.startTime || _performanceNow();
-    this.detail = options?.detail;
-  }
-  get duration() {
-    return _performanceNow() - this.startTime;
-  }
-  toJSON() {
-    return {
-      name: this.name,
-      entryType: this.entryType,
-      startTime: this.startTime,
-      duration: this.duration,
-      detail: this.detail
-    };
-  }
-}
-const PerformanceMark = class PerformanceMark2 extends PerformanceEntry {
-  entryType = "mark";
-  constructor() {
-    super(...arguments);
-  }
-  get duration() {
-    return 0;
-  }
-};
-class PerformanceMeasure extends PerformanceEntry {
-  entryType = "measure";
-}
-class PerformanceResourceTiming extends PerformanceEntry {
-  entryType = "resource";
-  serverTiming = [];
-  connectEnd = 0;
-  connectStart = 0;
-  decodedBodySize = 0;
-  domainLookupEnd = 0;
-  domainLookupStart = 0;
-  encodedBodySize = 0;
-  fetchStart = 0;
-  initiatorType = "";
-  name = "";
-  nextHopProtocol = "";
-  redirectEnd = 0;
-  redirectStart = 0;
-  requestStart = 0;
-  responseEnd = 0;
-  responseStart = 0;
-  secureConnectionStart = 0;
-  startTime = 0;
-  transferSize = 0;
-  workerStart = 0;
-  responseStatus = 0;
-}
-class PerformanceObserverEntryList {
-  __unenv__ = true;
-  getEntries() {
-    return [];
-  }
-  getEntriesByName(_name, _type) {
-    return [];
-  }
-  getEntriesByType(type) {
-    return [];
-  }
-}
-class Performance {
-  __unenv__ = true;
-  timeOrigin = _timeOrigin;
-  eventCounts = /* @__PURE__ */ new Map();
-  _entries = [];
-  _resourceTimingBufferSize = 0;
-  navigation = void 0;
-  timing = void 0;
-  timerify(_fn, _options) {
-    throw /* @__PURE__ */ createNotImplementedError("Performance.timerify");
-  }
-  get nodeTiming() {
-    return nodeTiming;
-  }
-  eventLoopUtilization() {
-    return {};
-  }
-  markResourceTiming() {
-    return new PerformanceResourceTiming("");
-  }
-  onresourcetimingbufferfull = null;
-  now() {
-    if (this.timeOrigin === _timeOrigin) {
-      return _performanceNow();
-    }
-    return Date.now() - this.timeOrigin;
-  }
-  clearMarks(markName) {
-    this._entries = markName ? this._entries.filter((e) => e.name !== markName) : this._entries.filter((e) => e.entryType !== "mark");
-  }
-  clearMeasures(measureName) {
-    this._entries = measureName ? this._entries.filter((e) => e.name !== measureName) : this._entries.filter((e) => e.entryType !== "measure");
-  }
-  clearResourceTimings() {
-    this._entries = this._entries.filter((e) => e.entryType !== "resource" || e.entryType !== "navigation");
-  }
-  getEntries() {
-    return this._entries;
-  }
-  getEntriesByName(name, type) {
-    return this._entries.filter((e) => e.name === name && (!type || e.entryType === type));
-  }
-  getEntriesByType(type) {
-    return this._entries.filter((e) => e.entryType === type);
-  }
-  mark(name, options) {
-    const entry = new PerformanceMark(name, options);
-    this._entries.push(entry);
-    return entry;
-  }
-  measure(measureName, startOrMeasureOptions, endMark) {
-    let start;
-    let end;
-    if (typeof startOrMeasureOptions === "string") {
-      start = this.getEntriesByName(startOrMeasureOptions, "mark")[0]?.startTime;
-      end = this.getEntriesByName(endMark, "mark")[0]?.startTime;
-    } else {
-      start = Number.parseFloat(startOrMeasureOptions?.start) || this.now();
-      end = Number.parseFloat(startOrMeasureOptions?.end) || this.now();
-    }
-    const entry = new PerformanceMeasure(measureName, {
-      startTime: start,
-      detail: {
-        start,
-        end
-      }
-    });
-    this._entries.push(entry);
-    return entry;
-  }
-  setResourceTimingBufferSize(maxSize) {
-    this._resourceTimingBufferSize = maxSize;
-  }
-  addEventListener(type, listener, options) {
-    throw /* @__PURE__ */ createNotImplementedError("Performance.addEventListener");
-  }
-  removeEventListener(type, listener, options) {
-    throw /* @__PURE__ */ createNotImplementedError("Performance.removeEventListener");
-  }
-  dispatchEvent(event) {
-    throw /* @__PURE__ */ createNotImplementedError("Performance.dispatchEvent");
-  }
-  toJSON() {
-    return this;
-  }
-}
-class PerformanceObserver {
-  __unenv__ = true;
-  static supportedEntryTypes = [];
-  _callback = null;
-  constructor(callback) {
-    this._callback = callback;
-  }
-  takeRecords() {
-    return [];
-  }
-  disconnect() {
-    throw /* @__PURE__ */ createNotImplementedError("PerformanceObserver.disconnect");
-  }
-  observe(options) {
-    throw /* @__PURE__ */ createNotImplementedError("PerformanceObserver.observe");
-  }
-  bind(fn) {
-    return fn;
-  }
-  runInAsyncScope(fn, thisArg, ...args) {
-    return fn.call(thisArg, ...args);
-  }
-  asyncId() {
-    return 0;
-  }
-  triggerAsyncId() {
-    return 0;
-  }
-  emitDestroy() {
-    return this;
-  }
-}
-const performance = globalThis.performance && "addEventListener" in globalThis.performance ? globalThis.performance : new Performance();
-globalThis.performance = performance;
-globalThis.Performance = Performance;
-globalThis.PerformanceEntry = PerformanceEntry;
-globalThis.PerformanceMark = PerformanceMark;
-globalThis.PerformanceMeasure = PerformanceMeasure;
-globalThis.PerformanceObserver = PerformanceObserver;
-globalThis.PerformanceObserverEntryList = PerformanceObserverEntryList;
-globalThis.PerformanceResourceTiming = PerformanceResourceTiming;
 const hrtime$1 = /* @__PURE__ */ Object.assign(function hrtime(startTime) {
   const now = Date.now();
   const seconds = Math.trunc(now / 1e3);
@@ -260,6 +17,18 @@ const hrtime$1 = /* @__PURE__ */ Object.assign(function hrtime(startTime) {
 }, { bigint: function bigint() {
   return BigInt(Date.now() * 1e6);
 } });
+class ReadStream {
+  fd;
+  isRaw = false;
+  isTTY = false;
+  constructor(fd) {
+    this.fd = fd;
+  }
+  setRawMode(mode) {
+    this.isRaw = mode;
+    return this;
+  }
+}
 class WriteStream {
   fd;
   columns = 80;
@@ -305,17 +74,25 @@ class WriteStream {
     return false;
   }
 }
-class ReadStream {
-  fd;
-  isRaw = false;
-  isTTY = false;
-  constructor(fd) {
-    this.fd = fd;
-  }
-  setRawMode(mode) {
-    this.isRaw = mode;
-    return this;
-  }
+// @__NO_SIDE_EFFECTS__
+function createNotImplementedError(name) {
+  return new Error(`[unenv] ${name} is not implemented yet!`);
+}
+// @__NO_SIDE_EFFECTS__
+function notImplemented(name) {
+  const fn = () => {
+    throw /* @__PURE__ */ createNotImplementedError(name);
+  };
+  return Object.assign(fn, { __unenv__: true });
+}
+// @__NO_SIDE_EFFECTS__
+function notImplementedClass(name) {
+  return class {
+    __unenv__ = true;
+    constructor() {
+      throw new Error(`[unenv] ${name} is not implemented yet!`);
+    }
+  };
 }
 const NODE_VERSION = "22.14.0";
 class Process extends EventEmitter {
@@ -550,119 +327,149 @@ class Process extends EventEmitter {
 }
 const globalProcess = globalThis["process"];
 const getBuiltinModule = globalProcess.getBuiltinModule;
-const { exit, platform, nextTick } = getBuiltinModule(
-  "node:process"
-);
+const workerdProcess = getBuiltinModule("node:process");
+const isWorkerdProcessV2 = globalThis.Cloudflare.compatibilityFlags.enable_nodejs_process_v2;
 const unenvProcess = new Process({
   env: globalProcess.env,
-  hrtime: hrtime$1,
-  nextTick
+  // `hrtime` is only available from workerd process v2
+  hrtime: isWorkerdProcessV2 ? workerdProcess.hrtime : hrtime$1,
+  // `nextTick` is available from workerd process v1
+  nextTick: workerdProcess.nextTick
 });
+const { exit, features, platform } = workerdProcess;
 const {
+  // Always implemented by workerd
+  env,
+  // Only implemented in workerd v2
+  hrtime: hrtime2,
+  // Always implemented by workerd
+  nextTick
+} = unenvProcess;
+const {
+  _channel,
+  _disconnect,
+  _events,
+  _eventsCount,
+  _handleQueue,
+  _maxListeners,
+  _pendingMessage,
+  _send,
+  assert,
+  disconnect,
+  mainModule
+} = unenvProcess;
+const {
+  // @ts-expect-error `_debugEnd` is missing typings
+  _debugEnd,
+  // @ts-expect-error `_debugProcess` is missing typings
+  _debugProcess,
+  // @ts-expect-error `_exiting` is missing typings
+  _exiting,
+  // @ts-expect-error `_fatalException` is missing typings
+  _fatalException,
+  // @ts-expect-error `_getActiveHandles` is missing typings
+  _getActiveHandles,
+  // @ts-expect-error `_getActiveRequests` is missing typings
+  _getActiveRequests,
+  // @ts-expect-error `_kill` is missing typings
+  _kill,
+  // @ts-expect-error `_linkedBinding` is missing typings
+  _linkedBinding,
+  // @ts-expect-error `_preload_modules` is missing typings
+  _preload_modules,
+  // @ts-expect-error `_rawDebug` is missing typings
+  _rawDebug,
+  // @ts-expect-error `_startProfilerIdleNotifier` is missing typings
+  _startProfilerIdleNotifier,
+  // @ts-expect-error `_stopProfilerIdleNotifier` is missing typings
+  _stopProfilerIdleNotifier,
+  // @ts-expect-error `_tickCallback` is missing typings
+  _tickCallback,
   abort,
   addListener,
   allowedNodeEnvironmentFlags,
-  hasUncaughtExceptionCaptureCallback,
-  setUncaughtExceptionCaptureCallback,
-  loadEnvFile,
-  sourceMapsEnabled,
   arch,
   argv,
   argv0,
+  availableMemory,
+  // @ts-expect-error `binding` is missing typings
+  binding,
+  channel,
   chdir,
   config,
   connected,
   constrainedMemory,
-  availableMemory,
   cpuUsage,
   cwd,
   debugPort,
   dlopen,
-  disconnect,
+  // @ts-expect-error `domain` is missing typings
+  domain,
   emit,
   emitWarning,
-  env,
   eventNames,
   execArgv,
   execPath,
+  exitCode,
   finalization,
-  features,
   getActiveResourcesInfo,
+  getegid,
+  geteuid,
+  getgid,
+  getgroups,
   getMaxListeners,
-  hrtime: hrtime2,
+  getuid,
+  hasUncaughtExceptionCaptureCallback,
+  // @ts-expect-error `initgroups` is missing typings
+  initgroups,
   kill,
-  listeners,
   listenerCount,
+  listeners,
+  loadEnvFile,
   memoryUsage,
-  on,
+  // @ts-expect-error `moduleLoadList` is missing typings
+  moduleLoadList,
   off,
+  on,
   once,
+  // @ts-expect-error `openStdin` is missing typings
+  openStdin,
+  permission,
   pid,
   ppid,
   prependListener,
   prependOnceListener,
   rawListeners,
+  // @ts-expect-error `reallyExit` is missing typings
+  reallyExit,
+  ref,
   release,
   removeAllListeners,
   removeListener,
   report,
   resourceUsage,
-  setMaxListeners,
-  setSourceMapsEnabled,
-  stderr,
-  stdin,
-  stdout,
-  title,
-  throwDeprecation,
-  traceDeprecation,
-  umask,
-  uptime,
-  version,
-  versions,
-  domain,
-  initgroups,
-  moduleLoadList,
-  reallyExit,
-  openStdin,
-  assert,
-  binding,
   send,
-  exitCode,
-  channel,
-  getegid,
-  geteuid,
-  getgid,
-  getgroups,
-  getuid,
   setegid,
   seteuid,
   setgid,
   setgroups,
+  setMaxListeners,
+  setSourceMapsEnabled,
   setuid,
-  permission,
-  mainModule,
-  _events,
-  _eventsCount,
-  _exiting,
-  _maxListeners,
-  _debugEnd,
-  _debugProcess,
-  _fatalException,
-  _getActiveHandles,
-  _getActiveRequests,
-  _kill,
-  _preload_modules,
-  _rawDebug,
-  _startProfilerIdleNotifier,
-  _stopProfilerIdleNotifier,
-  _tickCallback,
-  _disconnect,
-  _handleQueue,
-  _pendingMessage,
-  _channel,
-  _send,
-  _linkedBinding
-} = unenvProcess;
+  setUncaughtExceptionCaptureCallback,
+  sourceMapsEnabled,
+  stderr,
+  stdin,
+  stdout,
+  throwDeprecation,
+  title,
+  traceDeprecation,
+  umask,
+  unref,
+  uptime,
+  version,
+  versions
+} = isWorkerdProcessV2 ? workerdProcess : unenvProcess;
 const _process = {
   abort,
   addListener,
@@ -795,6 +602,229 @@ Object.assign(workerdConsole, {
   _times
 });
 globalThis.console = workerdConsole;
+const _timeOrigin = globalThis.performance?.timeOrigin ?? Date.now();
+const _performanceNow = globalThis.performance?.now ? globalThis.performance.now.bind(globalThis.performance) : () => Date.now() - _timeOrigin;
+const nodeTiming = {
+  name: "node",
+  entryType: "node",
+  startTime: 0,
+  duration: 0,
+  nodeStart: 0,
+  v8Start: 0,
+  bootstrapComplete: 0,
+  environment: 0,
+  loopStart: 0,
+  loopExit: 0,
+  idleTime: 0,
+  uvMetricsInfo: {
+    loopCount: 0,
+    events: 0,
+    eventsWaiting: 0
+  },
+  detail: void 0,
+  toJSON() {
+    return this;
+  }
+};
+class PerformanceEntry {
+  __unenv__ = true;
+  detail;
+  entryType = "event";
+  name;
+  startTime;
+  constructor(name, options) {
+    this.name = name;
+    this.startTime = options?.startTime || _performanceNow();
+    this.detail = options?.detail;
+  }
+  get duration() {
+    return _performanceNow() - this.startTime;
+  }
+  toJSON() {
+    return {
+      name: this.name,
+      entryType: this.entryType,
+      startTime: this.startTime,
+      duration: this.duration,
+      detail: this.detail
+    };
+  }
+}
+const PerformanceMark = class PerformanceMark2 extends PerformanceEntry {
+  entryType = "mark";
+  constructor() {
+    super(...arguments);
+  }
+  get duration() {
+    return 0;
+  }
+};
+class PerformanceMeasure extends PerformanceEntry {
+  entryType = "measure";
+}
+class PerformanceResourceTiming extends PerformanceEntry {
+  entryType = "resource";
+  serverTiming = [];
+  connectEnd = 0;
+  connectStart = 0;
+  decodedBodySize = 0;
+  domainLookupEnd = 0;
+  domainLookupStart = 0;
+  encodedBodySize = 0;
+  fetchStart = 0;
+  initiatorType = "";
+  name = "";
+  nextHopProtocol = "";
+  redirectEnd = 0;
+  redirectStart = 0;
+  requestStart = 0;
+  responseEnd = 0;
+  responseStart = 0;
+  secureConnectionStart = 0;
+  startTime = 0;
+  transferSize = 0;
+  workerStart = 0;
+  responseStatus = 0;
+}
+class PerformanceObserverEntryList {
+  __unenv__ = true;
+  getEntries() {
+    return [];
+  }
+  getEntriesByName(_name, _type) {
+    return [];
+  }
+  getEntriesByType(type) {
+    return [];
+  }
+}
+class Performance {
+  __unenv__ = true;
+  timeOrigin = _timeOrigin;
+  eventCounts = /* @__PURE__ */ new Map();
+  _entries = [];
+  _resourceTimingBufferSize = 0;
+  navigation = void 0;
+  timing = void 0;
+  timerify(_fn, _options) {
+    throw /* @__PURE__ */ createNotImplementedError("Performance.timerify");
+  }
+  get nodeTiming() {
+    return nodeTiming;
+  }
+  eventLoopUtilization() {
+    return {};
+  }
+  markResourceTiming() {
+    return new PerformanceResourceTiming("");
+  }
+  onresourcetimingbufferfull = null;
+  now() {
+    if (this.timeOrigin === _timeOrigin) {
+      return _performanceNow();
+    }
+    return Date.now() - this.timeOrigin;
+  }
+  clearMarks(markName) {
+    this._entries = markName ? this._entries.filter((e) => e.name !== markName) : this._entries.filter((e) => e.entryType !== "mark");
+  }
+  clearMeasures(measureName) {
+    this._entries = measureName ? this._entries.filter((e) => e.name !== measureName) : this._entries.filter((e) => e.entryType !== "measure");
+  }
+  clearResourceTimings() {
+    this._entries = this._entries.filter((e) => e.entryType !== "resource" || e.entryType !== "navigation");
+  }
+  getEntries() {
+    return this._entries;
+  }
+  getEntriesByName(name, type) {
+    return this._entries.filter((e) => e.name === name && (!type || e.entryType === type));
+  }
+  getEntriesByType(type) {
+    return this._entries.filter((e) => e.entryType === type);
+  }
+  mark(name, options) {
+    const entry = new PerformanceMark(name, options);
+    this._entries.push(entry);
+    return entry;
+  }
+  measure(measureName, startOrMeasureOptions, endMark) {
+    let start;
+    let end;
+    if (typeof startOrMeasureOptions === "string") {
+      start = this.getEntriesByName(startOrMeasureOptions, "mark")[0]?.startTime;
+      end = this.getEntriesByName(endMark, "mark")[0]?.startTime;
+    } else {
+      start = Number.parseFloat(startOrMeasureOptions?.start) || this.now();
+      end = Number.parseFloat(startOrMeasureOptions?.end) || this.now();
+    }
+    const entry = new PerformanceMeasure(measureName, {
+      startTime: start,
+      detail: {
+        start,
+        end
+      }
+    });
+    this._entries.push(entry);
+    return entry;
+  }
+  setResourceTimingBufferSize(maxSize) {
+    this._resourceTimingBufferSize = maxSize;
+  }
+  addEventListener(type, listener, options) {
+    throw /* @__PURE__ */ createNotImplementedError("Performance.addEventListener");
+  }
+  removeEventListener(type, listener, options) {
+    throw /* @__PURE__ */ createNotImplementedError("Performance.removeEventListener");
+  }
+  dispatchEvent(event) {
+    throw /* @__PURE__ */ createNotImplementedError("Performance.dispatchEvent");
+  }
+  toJSON() {
+    return this;
+  }
+}
+class PerformanceObserver {
+  __unenv__ = true;
+  static supportedEntryTypes = [];
+  _callback = null;
+  constructor(callback) {
+    this._callback = callback;
+  }
+  takeRecords() {
+    return [];
+  }
+  disconnect() {
+    throw /* @__PURE__ */ createNotImplementedError("PerformanceObserver.disconnect");
+  }
+  observe(options) {
+    throw /* @__PURE__ */ createNotImplementedError("PerformanceObserver.observe");
+  }
+  bind(fn) {
+    return fn;
+  }
+  runInAsyncScope(fn, thisArg, ...args) {
+    return fn.call(thisArg, ...args);
+  }
+  asyncId() {
+    return 0;
+  }
+  triggerAsyncId() {
+    return 0;
+  }
+  emitDestroy() {
+    return this;
+  }
+}
+const performance = globalThis.performance && "addEventListener" in globalThis.performance ? globalThis.performance : new Performance();
+globalThis.performance = performance;
+globalThis.Performance = Performance;
+globalThis.PerformanceEntry = PerformanceEntry;
+globalThis.PerformanceMark = PerformanceMark;
+globalThis.PerformanceMeasure = PerformanceMeasure;
+globalThis.PerformanceObserver = PerformanceObserver;
+globalThis.PerformanceObserverEntryList = PerformanceObserverEntryList;
+globalThis.PerformanceResourceTiming = PerformanceResourceTiming;
 var compose = (middleware, onError, onNotFound) => {
   return (context, next) => {
     let index = -1;
@@ -837,6 +867,7 @@ var compose = (middleware, onError, onNotFound) => {
     }
   };
 };
+var GET_MATCH_RESULT = Symbol();
 var parseBody = async (request, options = /* @__PURE__ */ Object.create(null)) => {
   const { all = false, dot = false } = options;
   const headers = request instanceof HonoRequest ? request.raw.headers : request.headers;
@@ -882,7 +913,11 @@ var handleParsingAllValues = (form, key, value) => {
       form[key] = [form[key], value];
     }
   } else {
-    form[key] = value;
+    if (!key.endsWith("[]")) {
+      form[key] = value;
+    } else {
+      form[key] = [value];
+    }
   }
 };
 var handleParsingNestedValues = (form, key, value) => {
@@ -913,9 +948,9 @@ var splitRoutingPath = (routePath) => {
 };
 var extractGroupsFromPath = (path) => {
   const groups = [];
-  path = path.replace(/\{[^}]+\}/g, (match, index) => {
+  path = path.replace(/\{[^}]+\}/g, (match2, index) => {
     const mark = `@${index}`;
-    groups.push([mark, match]);
+    groups.push([mark, match2]);
     return mark;
   });
   return { groups, path };
@@ -937,14 +972,14 @@ var getPattern = (label, next) => {
   if (label === "*") {
     return "*";
   }
-  const match = label.match(/^\:([^\{\}]+)(?:\{(.+)\})?$/);
-  if (match) {
+  const match2 = label.match(/^\:([^\{\}]+)(?:\{(.+)\})?$/);
+  if (match2) {
     const cacheKey = `${label}#${next}`;
     if (!patternCache[cacheKey]) {
-      if (match[2]) {
-        patternCache[cacheKey] = next && next[0] !== ":" && next[0] !== "*" ? [cacheKey, match[1], new RegExp(`^${match[2]}(?=/${next})`)] : [label, match[1], new RegExp(`^${match[2]}$`)];
+      if (match2[2]) {
+        patternCache[cacheKey] = next && next[0] !== ":" && next[0] !== "*" ? [cacheKey, match2[1], new RegExp(`^${match2[2]}(?=/${next})`)] : [label, match2[1], new RegExp(`^${match2[2]}$`)];
       } else {
-        patternCache[cacheKey] = [label, match[1], true];
+        patternCache[cacheKey] = [label, match2[1], true];
       }
     }
     return patternCache[cacheKey];
@@ -955,11 +990,11 @@ var tryDecode = (str, decoder) => {
   try {
     return decoder(str);
   } catch {
-    return str.replace(/(?:%[0-9A-Fa-f]{2})+/g, (match) => {
+    return str.replace(/(?:%[0-9A-Fa-f]{2})+/g, (match2) => {
       try {
-        return decoder(match);
+        return decoder(match2);
       } catch {
-        return match;
+        return match2;
       }
     });
   }
@@ -967,7 +1002,7 @@ var tryDecode = (str, decoder) => {
 var tryDecodeURI = (str) => tryDecode(str, decodeURI);
 var getPath = (request) => {
   const url = request.url;
-  const start = url.indexOf("/", 8);
+  const start = url.indexOf("/", url.indexOf(":") + 4);
   let i = start;
   for (; i < url.length; i++) {
     const charCode = url.charCodeAt(i);
@@ -1025,7 +1060,7 @@ var _decodeURI = (value) => {
   if (value.indexOf("+") !== -1) {
     value = value.replace(/\+/g, " ");
   }
-  return value.indexOf("%") !== -1 ? decodeURIComponent_(value) : value;
+  return value.indexOf("%") !== -1 ? tryDecode(value, decodeURIComponent_) : value;
 };
 var _getQueryParam = (url, key, multiple) => {
   let encoded;
@@ -1115,14 +1150,14 @@ var HonoRequest = class {
   #getDecodedParam(key) {
     const paramKey = this.#matchResult[0][this.routeIndex][1][key];
     const param = this.#getParamValue(paramKey);
-    return param ? /\%/.test(param) ? tryDecodeURIComponent(param) : param : void 0;
+    return param && /\%/.test(param) ? tryDecodeURIComponent(param) : param;
   }
   #getAllDecodedParams() {
     const decoded = {};
     const keys = Object.keys(this.#matchResult[0][this.routeIndex][1]);
     for (const key of keys) {
       const value = this.#getParamValue(this.#matchResult[0][this.routeIndex][1][key]);
-      if (value && typeof value === "string") {
+      if (value !== void 0) {
         decoded[key] = /\%/.test(value) ? tryDecodeURIComponent(value) : value;
       }
     }
@@ -1168,7 +1203,7 @@ var HonoRequest = class {
     return bodyCache[key] = raw[key]();
   };
   json() {
-    return this.#cachedBody("json");
+    return this.#cachedBody("text").then((text) => JSON.parse(text));
   }
   text() {
     return this.#cachedBody("text");
@@ -1193,6 +1228,9 @@ var HonoRequest = class {
   }
   get method() {
     return this.raw.method;
+  }
+  get [GET_MATCH_RESULT]() {
+    return this.#matchResult;
   }
   get matchedRoutes() {
     return this.#matchResult[0].map(([[, route]]) => route);
@@ -1232,11 +1270,11 @@ var resolveCallback = async (str, phase, preserveCallbacks, context, buffer) => 
   }
 };
 var TEXT_PLAIN = "text/plain; charset=UTF-8";
-var setHeaders = (headers, map = {}) => {
-  for (const key of Object.keys(map)) {
-    headers.set(key, map[key]);
-  }
-  return headers;
+var setDefaultContentType = (contentType, headers) => {
+  return {
+    "Content-Type": contentType,
+    ...headers
+  };
 };
 var Context = class {
   #rawRequest;
@@ -1245,15 +1283,13 @@ var Context = class {
   #var;
   finalized = false;
   error;
-  #status = 200;
+  #status;
   #executionCtx;
-  #headers;
-  #preparedHeaders;
   #res;
-  #isFresh = true;
   #layout;
   #renderer;
   #notFoundHandler;
+  #preparedHeaders;
   #matchResult;
   #path;
   constructor(req, options) {
@@ -1285,11 +1321,11 @@ var Context = class {
     }
   }
   get res() {
-    this.#isFresh = false;
-    return this.#res ||= new Response("404 Not Found", { status: 404 });
+    return this.#res ||= new Response(null, {
+      headers: this.#preparedHeaders ??= new Headers()
+    });
   }
   set res(_res) {
-    this.#isFresh = false;
     if (this.#res && _res) {
       _res = new Response(_res.body, _res);
       for (const [k, v] of this.#res.headers.entries()) {
@@ -1323,42 +1359,16 @@ var Context = class {
     if (this.finalized) {
       this.#res = new Response(this.#res.body, this.#res);
     }
+    const headers = this.#res ? this.#res.headers : this.#preparedHeaders ??= new Headers();
     if (value === void 0) {
-      if (this.#headers) {
-        this.#headers.delete(name);
-      } else if (this.#preparedHeaders) {
-        delete this.#preparedHeaders[name.toLocaleLowerCase()];
-      }
-      if (this.finalized) {
-        this.res.headers.delete(name);
-      }
-      return;
-    }
-    if (options?.append) {
-      if (!this.#headers) {
-        this.#isFresh = false;
-        this.#headers = new Headers(this.#preparedHeaders);
-        this.#preparedHeaders = {};
-      }
-      this.#headers.append(name, value);
+      headers.delete(name);
+    } else if (options?.append) {
+      headers.append(name, value);
     } else {
-      if (this.#headers) {
-        this.#headers.set(name, value);
-      } else {
-        this.#preparedHeaders ??= {};
-        this.#preparedHeaders[name.toLowerCase()] = value;
-      }
-    }
-    if (this.finalized) {
-      if (options?.append) {
-        this.res.headers.append(name, value);
-      } else {
-        this.res.headers.set(name, value);
-      }
+      headers.set(name, value);
     }
   };
   status = (status) => {
-    this.#isFresh = false;
     this.#status = status;
   };
   set = (key, value) => {
@@ -1375,94 +1385,58 @@ var Context = class {
     return Object.fromEntries(this.#var);
   }
   #newResponse(data, arg, headers) {
-    if (this.#isFresh && !headers && !arg && this.#status === 200) {
-      return new Response(data, {
-        headers: this.#preparedHeaders
-      });
-    }
-    if (arg && typeof arg !== "number") {
-      const header = new Headers(arg.headers);
-      if (this.#headers) {
-        this.#headers.forEach((v, k) => {
-          if (k === "set-cookie") {
-            header.append(k, v);
-          } else {
-            header.set(k, v);
-          }
-        });
-      }
-      const headers2 = setHeaders(header, this.#preparedHeaders);
-      return new Response(data, {
-        headers: headers2,
-        status: arg.status ?? this.#status
-      });
-    }
-    const status = typeof arg === "number" ? arg : this.#status;
-    this.#preparedHeaders ??= {};
-    this.#headers ??= new Headers();
-    setHeaders(this.#headers, this.#preparedHeaders);
-    if (this.#res) {
-      this.#res.headers.forEach((v, k) => {
-        if (k === "set-cookie") {
-          this.#headers?.append(k, v);
+    const responseHeaders = this.#res ? new Headers(this.#res.headers) : this.#preparedHeaders ?? new Headers();
+    if (typeof arg === "object" && "headers" in arg) {
+      const argHeaders = arg.headers instanceof Headers ? arg.headers : new Headers(arg.headers);
+      for (const [key, value] of argHeaders) {
+        if (key.toLowerCase() === "set-cookie") {
+          responseHeaders.append(key, value);
         } else {
-          this.#headers?.set(k, v);
-        }
-      });
-      setHeaders(this.#headers, this.#preparedHeaders);
-    }
-    headers ??= {};
-    for (const [k, v] of Object.entries(headers)) {
-      if (typeof v === "string") {
-        this.#headers.set(k, v);
-      } else {
-        this.#headers.delete(k);
-        for (const v2 of v) {
-          this.#headers.append(k, v2);
+          responseHeaders.set(key, value);
         }
       }
     }
-    return new Response(data, {
-      status,
-      headers: this.#headers
-    });
+    if (headers) {
+      for (const [k, v] of Object.entries(headers)) {
+        if (typeof v === "string") {
+          responseHeaders.set(k, v);
+        } else {
+          responseHeaders.delete(k);
+          for (const v2 of v) {
+            responseHeaders.append(k, v2);
+          }
+        }
+      }
+    }
+    const status = typeof arg === "number" ? arg : arg?.status ?? this.#status;
+    return new Response(data, { status, headers: responseHeaders });
   }
   newResponse = (...args) => this.#newResponse(...args);
-  body = (data, arg, headers) => {
-    return typeof arg === "number" ? this.#newResponse(data, arg, headers) : this.#newResponse(data, arg);
-  };
+  body = (data, arg, headers) => this.#newResponse(data, arg, headers);
   text = (text, arg, headers) => {
-    if (!this.#preparedHeaders) {
-      if (this.#isFresh && !headers && !arg) {
-        return new Response(text);
-      }
-      this.#preparedHeaders = {};
-    }
-    this.#preparedHeaders["content-type"] = TEXT_PLAIN;
-    if (typeof arg === "number") {
-      return this.#newResponse(text, arg, headers);
-    }
-    return this.#newResponse(text, arg);
+    return !this.#preparedHeaders && !this.#status && !arg && !headers && !this.finalized ? new Response(text) : this.#newResponse(
+      text,
+      arg,
+      setDefaultContentType(TEXT_PLAIN, headers)
+    );
   };
   json = (object, arg, headers) => {
-    const body = JSON.stringify(object);
-    this.#preparedHeaders ??= {};
-    this.#preparedHeaders["content-type"] = "application/json";
-    return typeof arg === "number" ? this.#newResponse(body, arg, headers) : this.#newResponse(body, arg);
+    return this.#newResponse(
+      JSON.stringify(object),
+      arg,
+      setDefaultContentType("application/json", headers)
+    );
   };
   html = (html, arg, headers) => {
-    this.#preparedHeaders ??= {};
-    this.#preparedHeaders["content-type"] = "text/html; charset=UTF-8";
-    if (typeof html === "object") {
-      return resolveCallback(html, HtmlEscapedCallbackPhase.Stringify, false, {}).then((html2) => {
-        return typeof arg === "number" ? this.#newResponse(html2, arg, headers) : this.#newResponse(html2, arg);
-      });
-    }
-    return typeof arg === "number" ? this.#newResponse(html, arg, headers) : this.#newResponse(html, arg);
+    const res = (html2) => this.#newResponse(html2, arg, setDefaultContentType("text/html; charset=UTF-8", headers));
+    return typeof html === "object" ? resolveCallback(html, HtmlEscapedCallbackPhase.Stringify, false, {}).then(res) : res(html);
   };
   redirect = (location, status) => {
-    this.#headers ??= new Headers();
-    this.#headers.set("Location", String(location));
+    const locationString = String(location);
+    this.header(
+      "Location",
+      !/[^\x00-\xFF]/.test(locationString) ? locationString : encodeURI(locationString)
+    );
     return this.newResponse(null, status ?? 302);
   };
   notFound = () => {
@@ -1482,7 +1456,8 @@ var notFoundHandler = (c) => {
 };
 var errorHandler = (err, c) => {
   if ("getResponse" in err) {
-    return err.getResponse();
+    const res = err.getResponse();
+    return c.newResponse(res.body, res);
   }
   console.error(err);
   return c.text("Internal Server Error", 500);
@@ -1549,6 +1524,8 @@ var Hono$1 = class Hono {
       router: this.router,
       getPath: this.getPath
     });
+    clone.errorHandler = this.errorHandler;
+    clone.#notFoundHandler = this.#notFoundHandler;
     clone.routes = this.routes;
     return clone;
   }
@@ -1589,7 +1566,11 @@ var Hono$1 = class Hono {
         optionHandler = options;
       } else {
         optionHandler = options.optionHandler;
-        replaceRequest = options.replaceRequest;
+        if (options.replaceRequest === false) {
+          replaceRequest = (request) => request;
+        } else {
+          replaceRequest = options.replaceRequest;
+        }
       }
     }
     const getOptions = optionHandler ? (c) => {
@@ -1625,7 +1606,7 @@ var Hono$1 = class Hono {
   #addRoute(method, path, handler) {
     method = method.toUpperCase();
     path = mergePath(this._basePath, path);
-    const r = { path, method, handler };
+    const r = { basePath: this._basePath, path, method, handler };
     this.router.add(method, path, [handler, r]);
     this.routes.push(r);
   }
@@ -1699,6 +1680,26 @@ var Hono$1 = class Hono {
     });
   };
 };
+var emptyParam = [];
+var buildAllMatchersKey = Symbol("buildAllMatchers");
+function match(method, path) {
+  const matchers = this[buildAllMatchersKey]();
+  const match2 = (method2, path2) => {
+    const matcher = matchers[method2] || matchers[METHOD_NAME_ALL];
+    const staticMatch = matcher[2][path2];
+    if (staticMatch) {
+      return staticMatch;
+    }
+    const match3 = path2.match(matcher[0]);
+    if (!match3) {
+      return [[], emptyParam];
+    }
+    const index = match3.indexOf("", 1);
+    return [matcher[1][index], match3];
+  };
+  this.match = match2;
+  return match2(method, path);
+}
 var LABEL_REG_EXP_STR = "[^/]+";
 var ONLY_WILDCARD_REG_EXP_STR = ".*";
 var TAIL_WILDCARD_REG_EXP_STR = "(?:|/.*)";
@@ -1745,6 +1746,9 @@ var Node$1 = class Node {
       const name = pattern[1];
       let regexpStr = pattern[2] || LABEL_REG_EXP_STR;
       if (name && pattern[2]) {
+        if (regexpStr === ".*") {
+          throw PATH_ERROR;
+        }
         regexpStr = regexpStr.replace(/^\((?!\?:)(?=[^)]+\)$)/, "(?:");
         if (/\((?!\?:)/.test(regexpStr)) {
           throw PATH_ERROR;
@@ -1856,7 +1860,6 @@ var Trie = class {
     return [new RegExp(`^${regexp}`), indexReplacementMap, paramReplacementMap];
   }
 };
-var emptyParam = [];
 var nullMatcher = [/^$/, [], /* @__PURE__ */ Object.create(null)];
 var wildcardRegExpCache = /* @__PURE__ */ Object.create(null);
 function buildWildcardRegExp(path) {
@@ -2002,30 +2005,14 @@ var RegExpRouter = class {
       });
     }
   }
-  match(method, path) {
-    clearWildcardRegExpCache();
-    const matchers = this.#buildAllMatchers();
-    this.match = (method2, path2) => {
-      const matcher = matchers[method2] || matchers[METHOD_NAME_ALL];
-      const staticMatch = matcher[2][path2];
-      if (staticMatch) {
-        return staticMatch;
-      }
-      const match = path2.match(matcher[0]);
-      if (!match) {
-        return [[], emptyParam];
-      }
-      const index = match.indexOf("", 1);
-      return [matcher[1][index], match];
-    };
-    return this.match(method, path);
-  }
-  #buildAllMatchers() {
+  match = match;
+  [buildAllMatchersKey]() {
     const matchers = /* @__PURE__ */ Object.create(null);
     Object.keys(this.#routes).concat(Object.keys(this.#middleware)).forEach((method) => {
       matchers[method] ||= this.#buildMatcher(method);
     });
     this.#middleware = this.#routes = void 0;
+    clearWildcardRegExpCache();
     return matchers;
   }
   #buildMatcher(method) {
@@ -2129,11 +2116,10 @@ var Node2 = class {
       const nextP = parts[i + 1];
       const pattern = getPattern(p, nextP);
       const key = Array.isArray(pattern) ? pattern[0] : p;
-      if (Object.keys(curNode.#children).includes(key)) {
+      if (key in curNode.#children) {
         curNode = curNode.#children[key];
-        const pattern2 = getPattern(p, nextP);
-        if (pattern2) {
-          possibleKeys.push(pattern2[1]);
+        if (pattern) {
+          possibleKeys.push(pattern[1]);
         }
         continue;
       }
@@ -2144,14 +2130,13 @@ var Node2 = class {
       }
       curNode = curNode.#children[key];
     }
-    const m = /* @__PURE__ */ Object.create(null);
-    const handlerSet = {
-      handler,
-      possibleKeys: possibleKeys.filter((v, i, a) => a.indexOf(v) === i),
-      score: this.#order
-    };
-    m[method] = handlerSet;
-    curNode.#methods.push(m);
+    curNode.#methods.push({
+      [method]: {
+        handler,
+        possibleKeys: possibleKeys.filter((v, i, a) => a.indexOf(v) === i),
+        score: this.#order
+      }
+    });
     return curNode;
   }
   #getHandlerSets(node, method, nodeParams, params) {
@@ -2214,10 +2199,10 @@ var Node2 = class {
             }
             continue;
           }
-          if (part === "") {
+          const [key, name, matcher] = pattern;
+          if (!part && !(matcher instanceof RegExp)) {
             continue;
           }
-          const [key, name, matcher] = pattern;
           const child = node.#children[key];
           const restPathString = parts.slice(i).join("/");
           if (matcher instanceof RegExp) {
@@ -2289,6 +2274,7 @@ var Hono2 = class extends Hono$1 {
   }
 };
 const app = new Hono2();
+const workerEntry = app ?? {};
 export {
-  app as default
+  workerEntry as default
 };

@@ -1,0 +1,10 @@
+apple-touch-icon.png
+doc.txt
+favicon.ico
+icons-192.png
+icons-512.png
+manifest.webmanifest
+robots.txt
+sitemap.xml
+wpeg-invoice-icon.png
+wpeg-invoice-logo.png
