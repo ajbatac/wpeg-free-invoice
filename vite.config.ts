@@ -13,7 +13,7 @@ export default defineConfig({
   build: {
     chunkSizeWarningLimit: 5000,
   },
-  base: "./",
+  base: "/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
