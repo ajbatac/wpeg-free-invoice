@@ -46,15 +46,29 @@ export function useInvoiceForm({ existingInvoice, onSave }: UseInvoiceFormProps)
   const [items, setItems] = useState<InvoiceItem[]>([
     {
       id: '1',
-      description: '',
+      description: 'Property Tax 2026 (3.5% increase)',
       quantity: 1,
       rate: 0,
-      amount: 0
-    }
+      amount: 0,
+    },
+    {
+      id: '2',
+      description: 'Waste Management Fee ($10 increase)',
+      quantity: 1,
+      rate: 264.00,
+      amount: 264.00,
+    },
+    {
+      id: '3',
+      description: 'Sewer Rates (per cubic metre)',
+      quantity: 1,
+      rate: 4.53,
+      amount: 4.53,
+    },
   ]);
 
   const [taxRate, setTaxRate] = useState(12); // Manitoba GST (5%) + PST (7%) = 12%
-  const [notes, setNotes] = useState('');
+  const [notes, setNotes] = useState('Winnipeg, Manitoba: 12% total sales tax (5% GST + 7% PST). Property taxes are increasing by 3.5% in 2026.');
   const [template, setTemplate] = useState<InvoiceTemplate>('classic');
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
 
@@ -150,7 +164,7 @@ export function useInvoiceForm({ existingInvoice, onSave }: UseInvoiceFormProps)
     saveInvoice(invoice);
     saveBusinessInfo(businessInfo);
     onSave?.(invoice);
-    
+
     return invoice;
   };
 

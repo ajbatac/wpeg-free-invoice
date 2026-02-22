@@ -10,8 +10,8 @@ export default function Terms() {
   return (
     <>
       <Seo
-        title="Terms of Use & Disclaimer | WPEG: Free Invoice Generator"
-        description="Read the terms of use and disclaimer for using the WPEG Free Invoice Generator."
+        title="Terms of Use | WPEG.app: Free Invoice Generator"
+        description="Terms of use and disclaimer for WPEG.app: Free Invoice Generator."
       />
       <div className="min-h-screen bg-background">
         <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -37,7 +37,7 @@ export default function Terms() {
               <section>
                 <h2 className="text-xl font-semibold mb-3">Important Legal Notice</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  WPEG: Free Invoice is provided "as is" without warranty of any kind. By using this service, 
+                  WPEG.app: Free Invoice is provided "as is" without warranty of any kind. By using this service,
                   you acknowledge and agree to the following terms and disclaimers.
                 </p>
               </section>
@@ -45,7 +45,7 @@ export default function Terms() {
               <section>
                 <h2 className="text-xl font-semibold mb-3">Use at Your Own Risk</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  This invoice generator tool is provided for convenience and general informational purposes only. 
+                  This invoice generator tool is provided for convenience and general informational purposes only.
                   Users are solely responsible for:
                 </p>
                 <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1 mt-2">
@@ -61,8 +61,8 @@ export default function Terms() {
               <section>
                 <h2 className="text-xl font-semibold mb-3">User-Generated Content Disclaimer</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  <strong>All invoice content is user-generated.</strong> WPEG provides only the software tools - users 
-                  create, input, and control all data, information, descriptions, amounts, and content that appears 
+                  <strong>All invoice content is user-generated.</strong> WPEG provides only the software tools - users
+                  create, input, and control all data, information, descriptions, amounts, and content that appears
                   in invoices. WPEG:
                 </p>
                 <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1 mt-2">
@@ -78,7 +78,7 @@ export default function Terms() {
               <section>
                 <h2 className="text-xl font-semibold mb-3">No Indemnity - Complete User Responsibility</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  <strong>WPEG provides no indemnity whatsoever.</strong> Users agree to indemnify, defend, and hold 
+                  <strong>WPEG provides no indemnity whatsoever.</strong> Users agree to indemnify, defend, and hold
                   harmless WPEG, its affiliates, officers, directors, employees, and agents from and against any and all:
                 </p>
                 <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1 mt-2">
@@ -91,7 +91,7 @@ export default function Terms() {
                   <li>Any damages, losses, costs, or expenses arising from use of this service</li>
                 </ul>
                 <p className="text-sm text-muted-foreground leading-relaxed mt-3">
-                  Users acknowledge they are solely responsible for their business operations, client relationships, 
+                  Users acknowledge they are solely responsible for their business operations, client relationships,
                   and all content they generate using this tool.
                 </p>
               </section>
@@ -99,8 +99,8 @@ export default function Terms() {
               <section>
                 <h2 className="text-xl font-semibold mb-3">No Professional or Legal Advice</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  WPEG: Free Invoice does not provide legal, tax, accounting, or professional business advice. 
-                  This tool does not replace consultation with qualified professionals regarding your specific 
+                  WPEG: Free Invoice does not provide legal, tax, accounting, or professional business advice.
+                  This tool does not replace consultation with qualified professionals regarding your specific
                   business needs, tax obligations, or legal requirements.
                 </p>
               </section>
@@ -108,7 +108,7 @@ export default function Terms() {
               <section>
                 <h2 className="text-xl font-semibold mb-3">Complete Limitation of Liability</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  <strong>To the fullest extent permitted by law, WPEG's liability is completely excluded.</strong> 
+                  <strong>To the fullest extent permitted by law, WPEG's liability is completely excluded.</strong>
                   WPEG and its affiliates shall not be liable for any:
                 </p>
                 <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1 mt-2">
@@ -124,7 +124,7 @@ export default function Terms() {
                   <li>Any costs, expenses, or losses of any kind whatsoever</li>
                 </ul>
                 <p className="text-sm text-muted-foreground leading-relaxed mt-3">
-                  <strong>Maximum liability limitation:</strong> Even if any liability were to be established, 
+                  <strong>Maximum liability limitation:</strong> Even if any liability were to be established,
                   WPEG's maximum aggregate liability shall not exceed $0.00 (zero dollars).
                 </p>
               </section>
@@ -132,9 +132,9 @@ export default function Terms() {
               <section>
                 <h2 className="text-xl font-semibold mb-3">Accuracy Disclaimer</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  While we strive to provide accurate invoice templates and calculations, users must verify 
-                  all information before use. Tax calculations, if any, are estimates only and may not reflect 
-                  current tax rates or specific business circumstances. Always consult with a qualified 
+                  While we strive to provide accurate invoice templates and calculations, users must verify
+                  all information before use. Tax calculations, if any, are estimates only and may not reflect
+                  current tax rates or specific business circumstances. Always consult with a qualified
                   accountant or tax professional for tax-related matters.
                 </p>
               </section>
@@ -142,8 +142,8 @@ export default function Terms() {
               <section>
                 <h2 className="text-xl font-semibold mb-3">Data and Privacy</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Users are responsible for protecting sensitive business and client information. While we 
-                  implement security measures, no system is completely secure. Users should not include 
+                  Users are responsible for protecting sensitive business and client information. While we
+                  implement security measures, no system is completely secure. Users should not include
                   sensitive information beyond what is necessary for basic invoicing.
                 </p>
               </section>
@@ -151,7 +151,7 @@ export default function Terms() {
               <section>
                 <h2 className="text-xl font-semibold mb-3">Service Availability</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  WPEG: Free Invoice is provided free of charge with no guarantee of continuous availability. 
+                  WPEG: Free Invoice is provided free of charge with no guarantee of continuous availability.
                   We reserve the right to modify, suspend, or discontinue the service at any time without notice.
                 </p>
               </section>
@@ -159,7 +159,7 @@ export default function Terms() {
               <section>
                 <h2 className="text-xl font-semibold mb-3">Governing Law</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  These terms are governed by the laws of Manitoba, Canada. Any disputes shall be subject 
+                  These terms are governed by the laws of Manitoba, Canada. Any disputes shall be subject
                   to the exclusive jurisdiction of the courts of Manitoba.
                 </p>
               </section>
@@ -167,8 +167,8 @@ export default function Terms() {
               <section>
                 <h2 className="text-xl font-semibold mb-3">Contact Information</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  For questions about these terms, please contact WPEG through our 
-                  <a href="https://portal.wpeg.ca" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
+                  For questions about these terms, please contact WPEG through our
+                  <a href="https://portal.wpeg.app" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
                     official portal
                   </a>.
                 </p>
@@ -194,15 +194,34 @@ export default function Terms() {
                   IMPORTANT: READ CAREFULLY BEFORE USING
                 </p>
                 <p className="text-xs text-red-700 text-center">
-                  By using WPEG: Free Invoice, you acknowledge that you have read, understood, 
-                  and agree to be bound by these comprehensive terms, disclaimers, and limitations. 
+                  By using WPEG: Free Invoice, you acknowledge that you have read, understood,
+                  and agree to be bound by these comprehensive terms, disclaimers, and limitations.
                   You accept full responsibility for all invoice content and waive any claims against WPEG.
                 </p>
               </div>
             </CardContent>
           </Card>
         </div>
-      </div>
+
+        <footer className="mt-12 py-8 border-t border-slate-200 text-center">
+          <p className="text-sm text-slate-500">
+            © 2026 WPEG.app: Free Invoice • <a href="/changelog" className="hover:text-slate-700 underline">v1.1.0</a>
+          </p>
+          <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 mt-4">
+            <a href="https://mortgage.wpeg.app/" target="_blank" rel="noopener noreferrer" className="text-xs text-slate-400 hover:text-blue-600 transition-colors">Winnipeg Mortgage Calculator</a>
+            <a href="https://salary.wpeg.app/" target="_blank" rel="noopener noreferrer" className="text-xs text-slate-400 hover:text-blue-600 transition-colors">Winnipeg Salary Calculator</a>
+            <a href="https://portal.wpeg.app/" target="_blank" rel="noopener noreferrer" className="text-xs text-slate-400 hover:text-blue-600 transition-colors">Useful FREE Tools</a>
+          </div>
+          <div className="flex flex-wrap justify-center items-center gap-4 mt-8">
+            <a href='https://ko-fi.com/N4N11N420X' target='_blank' rel="noopener noreferrer">
+              <img className="h-8 w-auto border-0 opacity-70 hover:opacity-100 transition-opacity" src='https://storage.ko-fi.com/cdn/kofi6.png?v=6' alt='Buy Me a Coffee at ko-fi.com' />
+            </a>
+            <a href="https://www.buymeacoffee.com/emailsig" target="_blank" rel="noopener noreferrer">
+              <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" className="h-8 w-auto opacity-70 hover:opacity-100 transition-opacity" />
+            </a>
+          </div>
+        </footer>
+      </div >
     </>
   );
 }

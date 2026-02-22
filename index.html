@@ -1,12 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WPEG: Free Invoice Generator</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/react-app/main.tsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WPEG.app: Free Invoice Generator | Create Professional Invoices</title>
+  <meta name="author" content="AJ Batac">
+  <meta name="keywords" content="Winnipeg, Free Invoice, Invoice Generator, Small Business, AJ Batac, WPEG.app">
+  <meta name="description"
+    content="Create professional invoices in minutes. Free forever for Winnipeg small businesses. No subscriptions, no complexity." />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://invoice.wpeg.app/" />
+  <meta property="og:title" content="WPEG.app: Free Invoice Generator | Create Professional Invoices" />
+  <meta property="og:description"
+    content="Create professional invoices in minutes. Free forever for Winnipeg small businesses. No subscriptions, no complexity." />
+  <meta property="og:image" content="/wpeg-invoice-og.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://invoice.wpeg.app/" />
+  <meta property="twitter:title" content="WPEG.app: Free Invoice Generator | Create Professional Invoices" />
+  <meta property="twitter:description"
+    content="Create professional invoices in minutes. Free forever for Winnipeg small businesses. No subscriptions, no complexity." />
+  <meta property="twitter:image" content="/wpeg-invoice-og.png" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZWFBS8W6N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-LZWFBS8W6N');
+  </script>
+
+  <link rel="icon" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+  <link rel="manifest" href="/site.webmanifest">
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/react-app/main.tsx"></script>
+</body>
+
 </html>

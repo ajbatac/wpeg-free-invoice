@@ -1,4 +1,4 @@
-import { ArrowRight, FileText, Download, Zap, MapPin, Star, Shield, Clock } from 'lucide-react';
+import { ArrowRight, FileText, Download, Zap, MapPin, Star, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useNavigate } from 'react-router';
@@ -14,7 +14,7 @@ export default function Home() {
     link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap';
     link.rel = 'stylesheet';
     document.head.appendChild(link);
-    
+
     return () => {
       document.head.removeChild(link);
     };
@@ -22,47 +22,47 @@ export default function Home() {
 
   const features = [
     {
-      icon: <Zap className="h-7 w-7" />,
-      title: "Lightning Fast",
-      description: "Create professional invoices in under 2 minutes with our streamlined workflow"
+      icon: <Shield className="h-7 w-7" />,
+      title: "100% Private & Local",
+      description: "Your data stays on your computer. We never see your invoices, and nothing is stored in the cloud."
     },
     {
-      icon: <FileText className="h-7 w-7" />,
-      title: "Professional Templates",
-      description: "Beautiful, customizable invoice templates that make you look professional"
+      icon: <Zap className="h-7 w-7" />,
+      title: "No Login Required",
+      description: "Start invoicing immediately. No accounts to create, no passwords to remember, and no email spam."
     },
     {
       icon: <Download className="h-7 w-7" />,
-      title: "Instant PDF Export",
-      description: "Download high-quality PDF invoices instantly, ready to send to clients"
+      title: "Local Processing",
+      description: "PDFs are generated right in your browser. Fast, secure, and works even with a spotty connection."
     },
     {
-      icon: <Shield className="h-7 w-7" />,
-      title: "Secure & Reliable",
-      description: "Your invoice data is stored locally and securely with enterprise-grade protection"
+      icon: <FileText className="h-7 w-7" />,
+      title: "Professional & Free",
+      description: "Beautiful templates that save to your browser's local storage automatically for future editing."
     }
   ];
 
   const benefits = [
     {
-      icon: <Clock className="h-5 w-5" />,
-      text: "Save 95% of your invoicing time"
+      icon: <Shield className="h-5 w-5" />,
+      text: "Private: No data ever leaves your device"
     },
     {
       icon: <Star className="h-5 w-5" />,
-      text: "Get paid 60% faster on average"
+      text: "Zero Complexity: No login, no cloud, no friction"
     },
     {
-      icon: <Shield className="h-5 w-5" />,
-      text: "100% secure and private. No data is stored on our servers."
+      icon: <Zap className="h-5 w-5" />,
+      text: "Secure: Fully local browser-based generation"
     }
   ];
 
   return (
     <>
       <Seo
-        title="WPEG: Free Invoice Generator | Free Invoice Generator for Winnipeg Small Businesses"
-        description="Create stunning, professional invoices in minutes. No subscriptions, no complexity. Just beautiful invoices that help you get paid faster."
+        title="WPEG: Free Invoice Generator | Create Professional Invoices"
+        description="Create professional invoices in minutes. Free forever for Winnipeg small businesses. No subscriptions, no complexity."
       />
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 relative overflow-hidden">
         {/* Background Elements */}
@@ -73,16 +73,31 @@ export default function Home() {
         {/* Header */}
         <header className="relative z-10 container mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-              <a href='/'><img src="/wpeg-invoice-logo.png" alt="WPEG Invoice Logo" className="scale-50" /></a>
+            <div className="flex items-center">
+              <a href='/' className="flex items-center space-x-2.5 group transition-all duration-300">
+                <div className="bg-gradient-to-br from-blue-600 to-cyan-500 p-2 rounded-xl shadow-md group-hover:shadow-lg group-hover:scale-105 transition-all">
+                  <FileText className="h-5 w-5 md:h-6 md:w-6 text-white" />
+                </div>
+                <div className="flex flex-col justify-center">
+                  <span className="text-xl md:text-2xl font-bold tracking-tighter text-slate-900 leading-none">
+                    wpeg<span className="text-blue-600">.app</span>
+                  </span>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] leading-none mt-1 hidden sm:block">
+                    Free Invoice
+                  </span>
+                </div>
+              </a>
             </div>
-            <Button 
-              variant="outline" 
-              onClick={() => navigate('/dashboard')}
-              className="border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 transition-all duration-300"
-            >
-              View Dashboard
-            </Button>
+            <div className="flex items-center space-x-6">
+              <img src="/wpeg-invoice.png" alt="WPEG Invoice" className="h-16 md:h-20 object-contain rounded-xl shadow-lg hidden sm:block" />
+              <Button
+                variant="outline"
+                onClick={() => navigate('/dashboard')}
+                className="border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 transition-all duration-300"
+              >
+                View Dashboard
+              </Button>
+            </div>
           </div>
         </header>
 
@@ -111,11 +126,12 @@ export default function Home() {
                 </span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
-                Create stunning, professional invoices in minutes. No subscriptions, no complexity. 
-                Just beautiful invoices that help you get paid faster.
+                Professional invoices with <strong>zero cloud risk</strong>.
+                Everything is processed locally on your device. No accounts, no data tracking,
+                and no subscription fees. Just pure, private invoicing.
               </p>
             </div>
-            
+
             {/* Benefits */}
             <div className="flex flex-wrap justify-center gap-6 md:gap-8">
               {benefits.map((benefit, index) => (
@@ -127,18 +143,18 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button 
-                size="lg" 
-                onClick={() => navigate('/dashboard')} 
+              <Button
+                size="lg"
+                onClick={() => navigate('/dashboard')}
                 className="text-lg px-10 py-4 h-auto bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
                 Start Creating Invoices
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <p className="text-sm text-gray-500 font-medium">
-                ✨ Completely free • No signup required • Ready in 30 seconds
+                ✨ 100% Private • Locally Processed • Zero Data Tracking
               </p>
             </div>
           </div>
@@ -152,15 +168,15 @@ export default function Home() {
                 Everything you need to succeed
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Built specifically for Winnipeg small business owners who need professional invoicing 
+                Built specifically for Winnipeg small business owners who need professional invoicing
                 without the complexity or cost of traditional solutions.
               </p>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {features.map((feature, index) => (
-                <Card 
-                  key={index} 
+                <Card
+                  key={index}
                   className="group border-0 bg-white/60 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 relative overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-cyan-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -189,7 +205,7 @@ export default function Home() {
             <Card className="border-0 bg-gradient-to-br from-green-50 to-emerald-50 shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-green-200/30 to-emerald-200/30 rounded-full blur-3xl"></div>
               <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-emerald-200/30 to-green-200/30 rounded-full blur-2xl"></div>
-              
+
               <CardHeader className="text-center pb-8 relative z-10">
                 <div className="inline-flex items-center gap-3 mx-auto mb-6 px-6 py-3 bg-green-100 rounded-full">
                   <MapPin className="h-6 w-6 text-green-600" />
@@ -199,8 +215,8 @@ export default function Home() {
                   Supporting Local Business Growth
                 </CardTitle>
                 <CardDescription className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
-                  We believe in supporting our local Winnipeg business community. That's why WPEG: Free Invoice 
-                  is completely free for small businesses in our city. No hidden fees, no time limits, 
+                  We believe in supporting our local Winnipeg business community. That's why WPEG: Free Invoice
+                  is completely free for small businesses in our city. No hidden fees, no time limits,
                   just professional invoicing tools to help you succeed.
                 </CardDescription>
               </CardHeader>
@@ -219,9 +235,9 @@ export default function Home() {
                     <div className="text-sm text-gray-600">Always Available</div>
                   </div>
                 </div>
-                <Button 
-                  size="lg" 
-                  onClick={() => navigate('/dashboard')} 
+                <Button
+                  size="lg"
+                  onClick={() => navigate('/dashboard')}
                   className="text-lg px-10 py-4 h-auto bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   Get Started - It's Free!
@@ -242,14 +258,14 @@ export default function Home() {
                   Ready to transform your invoicing?
                 </CardTitle>
                 <CardDescription className="text-lg text-gray-300 leading-relaxed">
-                  Join hundreds of Winnipeg businesses who've simplified their invoicing with WPEG: Free Invoice. 
+                  Join hundreds of Winnipeg businesses who've simplified their invoicing with WPEG: Free Invoice.
                   Start creating professional invoices in the next 2 minutes.
                 </CardDescription>
               </CardHeader>
               <CardContent className="relative z-10">
-                <Button 
-                  size="lg" 
-                  onClick={() => navigate('/dashboard')} 
+                <Button
+                  size="lg"
+                  onClick={() => navigate('/dashboard')}
                   className="text-lg px-10 py-4 h-auto bg-white text-gray-900 hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                 >
                   Create Your First Invoice Now
@@ -266,20 +282,33 @@ export default function Home() {
         {/* Footer */}
         <footer className="relative z-10 container mx-auto px-6 py-12 border-t border-gray-200/50">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-3 mb-6 md:mb-0">
-              <span className="text-xl font-bold text-gray-900" style={{ fontFamily: 'Playfair Display' }}>
-                WPEG: Free Invoice Generator
+            <div className="flex flex-col mb-6 md:mb-0">
+              <span className="text-xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'Playfair Display' }}>
+                WPEG.app: Free Invoice Generator
               </span>
+              <div className="flex flex-col space-y-1">
+                <a href="https://mortgage.wpeg.app/" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-500 hover:text-blue-600 transition-colors">Winnipeg Mortgage Calculator</a>
+                <a href="https://salary.wpeg.app/" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-500 hover:text-blue-600 transition-colors">Winnipeg Salary Calculator</a>
+                <a href="https://portal.wpeg.app/" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-500 hover:text-blue-600 transition-colors">Useful FREE Tools</a>
+              </div>
+              <div className="flex flex-wrap items-center gap-4 mt-6">
+                <a href='https://ko-fi.com/N4N11N420X' target='_blank' rel="noopener noreferrer">
+                  <img className="h-9 w-auto border-0" src='https://storage.ko-fi.com/cdn/kofi6.png?v=6' alt='Buy Me a Coffee at ko-fi.com' />
+                </a>
+                <a href="https://www.buymeacoffee.com/emailsig" target="_blank" rel="noopener noreferrer">
+                  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" className="h-9 w-auto" />
+                </a>
+              </div>
             </div>
             <div className="text-center md:text-right">
               <p className="text-sm text-gray-600 mb-1">
-                © 2024 WPEG: Free Invoice. Made with ❤️ in Winnipeg
+                © 2026 WPEG.app: Free Invoice. Made with ❤️ in Winnipeg
               </p>
               <p className="text-xs text-gray-500">
-                Powered by <a href="https://portal.wpeg.ca" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700 underline">WPEG</a> • Free forever for Winnipeg small businesses
+                Powered by <a href="https://portal.wpeg.app" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700 underline">WPEG.app</a> • Free forever for Winnipeg small businesses
               </p>
               <p className="text-xs text-gray-400 mt-2">
-                <a href="/terms" className="hover:text-gray-600 underline">Terms & Disclaimer</a> • Use at your own risk
+                <a href="/terms" className="hover:text-gray-600 underline">Terms & Disclaimer</a> • <a href="/changelog" className="hover:text-gray-600 underline">v1.1.0</a> • Use at your own risk
               </p>
             </div>
           </div>

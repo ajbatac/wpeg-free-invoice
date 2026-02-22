@@ -1,70 +1,7 @@
 # WPEG: Free Invoice
 
-WPEG: Free Invoice is an open-source invoicing tool designed for users in Winnipeg and beyond. This project helps users generate, manage, and organize invoices efficiently—completely free.
+WPEG: Free Invoice is a clean, modern, and open-source invoicing platform built specifically for small businesses and freelancers in Winnipeg. We provide professional invoice generation tools that are free forever, with no subscriptions, no complicated signups, and a focus on simplicity and privacy.
 
-## Features
+Our mission is to empower the local business community by providing high-quality tools that help professionals get paid faster and look more professional when billing their clients.
 
-- Generate professional invoices quickly
-- Organize starred repositories with custom lists
-- Clean and simple user interface
-- Built using TypeScript, Vite, and Tailwind CSS
-
-## Getting Started
-
-To run the development server locally:
-
-```bash
-npm install
-npm run dev
-```
-
-## Tech Stack
-
-- **TypeScript** (94.8%)
-- **JavaScript** (2.4%)
-- **CSS** (1.9%)
-- **HTML** (0.9%)
-
-## Folder Structure
-
-```
-.
-├── .augment/rules
-├── .clinerules
-├── .github
-├── .kilocode/rules
-├── .roo/rules
-├── src
-├── .gitattributes
-├── .gitignore
-├── README.md
-├── eslint.config.js
-├── index.html
-├── netlify.toml
-├── package-lock.json
-├── package.json
-├── postcss.config.js
-├── tailwind.config.js
-├── tsconfig.app.json
-├── tsconfig.json
-├── tsconfig.node.json
-├── tsconfig.worker.json
-├── vite.config.ts
-├── wrangler.jsonc
-```
-
-## Topics
-
-- free
-- invoice
-- winnipeg
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-
-This project is open-source and available under the [MIT License](LICENSE).
-
----
+For more information and to start creating invoices, visit [invoice.wpeg.app](https://invoice.wpeg.app).

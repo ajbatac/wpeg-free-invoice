@@ -24,7 +24,7 @@ export const ClientInfoSchema = z.object({
   address: z.string().optional(),
 });
 
-export const InvoiceTemplateSchema = z.enum(["classic", "modern", "professional"]);
+export const InvoiceTemplateSchema = z.enum(["classic", "modern", "professional", "minimalist", "elegant", "cxo", "creative", "brutalist", "pastel", "eco"]);
 
 export const InvoiceSchema = z.object({
   id: z.string(),

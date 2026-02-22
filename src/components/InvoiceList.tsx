@@ -78,7 +78,11 @@ export default function InvoiceList({ onCreateNew, onEditInvoice }: InvoiceListP
 
       <div className="grid gap-4">
         {invoices.map((invoice) => (
-          <Card key={invoice.id} className="hover:shadow-md transition-shadow">
+          <Card
+            key={invoice.id}
+            className="hover:shadow-md transition-shadow cursor-pointer"
+            onClick={() => onEditInvoice(invoice)}
+          >
             <CardContent className="p-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="space-y-1">
@@ -97,12 +101,15 @@ export default function InvoiceList({ onCreateNew, onEditInvoice }: InvoiceListP
                     <span className="font-medium text-primary">{formatCurrency(invoice.total)}</span>
                   </div>
                 </div>
-                
+
                 <div className="flex gap-2">
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => onEditInvoice(invoice)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onEditInvoice(invoice);
+                    }}
                   >
                     <Edit className="h-4 w-4" />
                     Edit
@@ -110,7 +117,10 @@ export default function InvoiceList({ onCreateNew, onEditInvoice }: InvoiceListP
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => handleDeleteInvoice(invoice.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDeleteInvoice(invoice.id);
+                    }}
                   >
                     <Trash2 className="h-4 w-4" />
                     Delete
