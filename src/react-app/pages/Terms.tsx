@@ -205,7 +205,7 @@ export default function Terms() {
 
         <footer className="mt-12 py-8 border-t border-slate-200 text-center">
           <p className="text-sm text-slate-500">
-            © 2026 WPEG.app: Free Invoice • <a href="/changelog" className="hover:text-slate-700 underline">v1.1.0</a>
+            © 2026 WPEG.app: Free Invoice • <a href="/changelog" className="hover:text-slate-700 underline">v1.2.0</a>
           </p>
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 mt-4">
             <a href="https://mortgage.wpeg.app/" target="_blank" rel="noopener noreferrer" className="text-xs text-slate-400 hover:text-blue-600 transition-colors">Winnipeg Mortgage Calculator</a>

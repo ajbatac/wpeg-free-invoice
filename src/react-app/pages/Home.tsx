@@ -308,7 +308,7 @@ export default function Home() {
                 Powered by <a href="https://portal.wpeg.app" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700 underline">WPEG.app</a> • Free forever for Winnipeg small businesses
               </p>
               <p className="text-xs text-gray-400 mt-2">
-                <a href="/terms" className="hover:text-gray-600 underline">Terms & Disclaimer</a> • <a href="/changelog" className="hover:text-gray-600 underline">v1.1.0</a> • Use at your own risk
+                <a href="/terms" className="hover:text-gray-600 underline">Terms & Disclaimer</a> • <a href="/changelog" className="hover:text-gray-600 underline">v1.2.0</a> • Use at your own risk
               </p>
             </div>
           </div>

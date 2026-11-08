@@ -44,17 +44,72 @@ export default function Changelog() {
                     </header>
 
                     <div className="space-y-12">
-                        {/* Version 1.1.0 */}
+                        {/* Version 1.2.0 */}
                         <section className="relative pl-8 border-l-2 border-blue-500/20">
-                            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-500 border-4 border-white shadow-sm" />
+                            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-500 border-4 border-white shadow-xs" />
+                            <div className="flex items-center gap-3 mb-4">
+                                <h2 className="text-2xl font-bold text-slate-900">v1.2.0</h2>
+                                <span className="text-sm font-medium text-slate-400">November 8, 2026</span>
+                            </div>
+
+                            <Card className="border-slate-200/60 shadow-xs overflow-hidden bg-white">
+                                <CardHeader className="bg-slate-50/50 border-b border-slate-100 pb-3">
+                                    <CardTitle className="text-base text-slate-800">Mobile Experience, Layout &amp; Quick Tax Presets</CardTitle>
+                                </CardHeader>
+                                <CardContent className="pt-6">
+                                    <ul className="space-y-4">
+                                        <li className="flex gap-3">
+                                            <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-blue-500 shrink-0" />
+                                            <p className="text-slate-600 leading-relaxed">
+                                                <strong className="text-slate-900">Mobile &amp; Tablet Live Preview:</strong> You can now toggle smoothly between editing your invoice details and viewing the live PDF preview right on your phone or tablet before downloading.
+                                            </p>
+                                        </li>
+                                        <li className="flex gap-3">
+                                            <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-blue-500 shrink-0" />
+                                            <p className="text-slate-600 leading-relaxed">
+                                                <strong className="text-slate-900">Enhanced Line Items Layout:</strong> Item rows now adapt cleanly on smaller screens with spacious touch buttons, making it effortless to add descriptions, quantities, and rates on any device.
+                                            </p>
+                                        </li>
+                                        <li className="flex gap-3">
+                                            <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-blue-500 shrink-0" />
+                                            <p className="text-slate-600 leading-relaxed">
+                                                <strong className="text-slate-900">One-Click Tax Presets:</strong> Added convenient quick-select buttons for Manitoba sales tax (12% GST+PST), 5% GST only, and tax-exempt transactions.
+                                            </p>
+                                        </li>
+                                        <li className="flex gap-3">
+                                            <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-blue-500 shrink-0" />
+                                            <p className="text-slate-600 leading-relaxed">
+                                                <strong className="text-slate-900">Company Logo Upload &amp; Management:</strong> Easily upload, review, and remove your business logo with instant preview feedback.
+                                            </p>
+                                        </li>
+                                        <li className="flex gap-3">
+                                            <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-blue-500 shrink-0" />
+                                            <p className="text-slate-600 leading-relaxed">
+                                                <strong className="text-slate-900">Timezone-Accurate Dates:</strong> Improved date handling so that invoice issue dates and due dates always reflect your exact local calendar day accurately.
+                                            </p>
+                                        </li>
+                                        <li className="flex gap-3">
+                                            <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-blue-500 shrink-0" />
+                                            <p className="text-slate-600 leading-relaxed">
+                                                <strong className="text-slate-900">Refined Template Previews:</strong> Improved visual alignment, template indicators, and full-screen preview modal across all 10 invoice styles.
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </CardContent>
+                            </Card>
+                        </section>
+
+                        {/* Version 1.1.0 */}
+                        <section className="relative pl-8 border-l-2 border-slate-200">
+                            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-300 border-4 border-white shadow-xs" />
                             <div className="flex items-center gap-3 mb-4">
                                 <h2 className="text-2xl font-bold text-slate-900">v1.1.0</h2>
                                 <span className="text-sm font-medium text-slate-400">February 21, 2026</span>
                             </div>
 
-                            <Card className="border-slate-200/60 shadow-sm overflow-hidden bg-white">
+                            <Card className="border-slate-200/60 shadow-xs overflow-hidden bg-white">
                                 <CardHeader className="bg-slate-50/50 border-b border-slate-100 pb-3">
-                                    <CardTitle className="text-base text-slate-800">Domain & Brand Migration</CardTitle>
+                                    <CardTitle className="text-base text-slate-800">Domain &amp; Brand Migration</CardTitle>
                                 </CardHeader>
                                 <CardContent className="pt-6">
                                     <ul className="space-y-4">
@@ -89,7 +144,7 @@ export default function Changelog() {
 
                         {/* Version 1.0.0 */}
                         <section className="relative pl-8 border-l-2 border-slate-200">
-                            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-300 border-4 border-white shadow-sm" />
+                            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-300 border-4 border-white shadow-xs" />
                             <div className="flex items-center gap-3 mb-4">
                                 <h2 className="text-2xl font-bold text-slate-700">v1.0.0</h2>
                                 <span className="text-sm font-medium text-slate-400">Initial Launch</span>
@@ -102,12 +157,6 @@ export default function Changelog() {
                             </Card>
                         </section>
                     </div>
-
-                    <footer className="mt-24 pt-8 border-t border-slate-200 text-center">
-                        <p className="text-sm text-slate-400 italic">
-                            Thank you for being part of our community. More updates coming soon!
-                        </p>
-                    </footer>
                 </div>
             </div>
         </>

@@ -1,0 +1,19 @@
+TITLE: WPEG.app: Free Invoice Generator
+CANONICAL URL: https://invoice.wpeg.app/
+DESCRIPTION: Free, client-side, privacy-focused invoice generator built for Winnipeg small businesses, contractors, and freelancers.
+
+CORE ATTRIBUTES:
+- Privacy: 100% Client-Side. No personal data, client information, or invoice totals are ever sent to or stored on remote servers.
+- Cost: 100% Free Forever with no subscriptions, credit cards, or accounts required.
+- Templates: 10 professionally designed PDF invoice templates (Classic, Modern, Professional, Minimalist, Elegant, CXO, Creative, Brutalist, Pastel, Eco).
+- Regional Focus: Built-in tax rate presets for Manitoba (12% GST+PST, 5% GST, and tax-exempt).
+- Features: Instant PDF generation, live browser preview with mobile/tablet view modes, company logo uploads, line item calculations, local storage persistence.
+
+KEY URLS:
+- Home: https://invoice.wpeg.app/
+- Invoice Creator & Dashboard: https://invoice.wpeg.app/dashboard
+- Public Changelog: https://invoice.wpeg.app/changelog
+- RSS Feed: https://invoice.wpeg.app/changelog/rss
+- Terms & Disclaimer: https://invoice.wpeg.app/terms
+- Sitemap: https://invoice.wpeg.app/sitemap.xml
+- Robots Policy: https://invoice.wpeg.app/robots.txt

@@ -1,7 +1,12 @@
-# WPEG: Free Invoice
+# WPEG.app: Free Invoice Generator
 
-WPEG: Free Invoice is a clean, modern, and open-source invoicing platform built specifically for small businesses and freelancers in Winnipeg. We provide professional invoice generation tools that are free forever, with no subscriptions, no complicated signups, and a focus on simplicity and privacy.
+WPEG.app: Free Invoice Generator is a clean, modern, and privacy-first invoicing platform built for small businesses, independent contractors, and freelancers in Winnipeg, Manitoba.
 
-Our mission is to empower the local business community by providing high-quality tools that help professionals get paid faster and look more professional when billing their clients.
+We provide fast, professional invoice generation that is 100% free forever:
+- **Zero Cloud Risk:** All invoice data is processed locally in your browser. Nothing is ever tracked or stored on remote servers.
+- **No Logins or Subscriptions:** Start creating invoices immediately without passwords, email lists, or fees.
+- **10 Professional Styles:** Choose from a curated collection of beautiful PDF templates designed for every business industry.
+- **Mobile & Tablet Friendly:** Dedicated responsive layout with live PDF previewing directly on your phone, tablet, or desktop.
+- **Local Tax Support:** Built-in presets for Manitoba sales taxes (GST + PST) and flexible custom tax rates.
 
-For more information and to start creating invoices, visit [invoice.wpeg.app](https://invoice.wpeg.app).
+Visit [invoice.wpeg.app](https://invoice.wpeg.app) to start creating invoices now.
