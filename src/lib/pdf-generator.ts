@@ -42,7 +42,9 @@ export async function generatePDF(invoice: Invoice): Promise<Blob> {
 
     return pdf.output('blob');
   } finally {
-    document.body.removeChild(container);
+    if (container.parentNode) {
+      container.parentNode.removeChild(container);
+    }
   }
 }
 

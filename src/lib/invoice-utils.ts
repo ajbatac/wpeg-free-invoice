@@ -1,19 +1,25 @@
 import type { Invoice, InvoiceItem, BusinessInfo } from "@/shared/types";
 
 export function calculateItemAmount(quantity: number, rate: number): number {
-  return Math.round(quantity * rate * 100) / 100;
+  const q = Number(quantity) || 0;
+  const r = Number(rate) || 0;
+  return Math.round(q * r * 100) / 100;
 }
 
 export function calculateSubtotal(items: InvoiceItem[]): number {
-  return Math.round(items.reduce((sum, item) => sum + item.amount, 0) * 100) / 100;
+  return Math.round(items.reduce((sum, item) => sum + (Number(item.amount) || 0), 0) * 100) / 100;
 }
 
 export function calculateTaxAmount(subtotal: number, taxRate: number): number {
-  return Math.round(subtotal * (taxRate / 100) * 100) / 100;
+  const s = Number(subtotal) || 0;
+  const t = Number(taxRate) || 0;
+  return Math.round(s * (t / 100) * 100) / 100;
 }
 
 export function calculateTotal(subtotal: number, taxAmount: number): number {
-  return Math.round((subtotal + taxAmount) * 100) / 100;
+  const s = Number(subtotal) || 0;
+  const t = Number(taxAmount) || 0;
+  return Math.round((s + t) * 100) / 100;
 }
 
 export function generateInvoiceNumber(): string {
@@ -26,14 +32,35 @@ export function generateInvoiceNumber(): string {
 }
 
 export function formatCurrency(amount: number): string {
+  const safeAmount = typeof amount === 'number' && !isNaN(amount) ? amount : 0;
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-  }).format(amount);
+  }).format(safeAmount);
 }
 
 export function formatDate(dateString: string): string {
-  return new Date(dateString).toLocaleDateString('en-US', {
+  if (!dateString) return '';
+  // Avoid UTC timezone shift when parsing YYYY-MM-DD
+  const parts = dateString.split('-');
+  if (parts.length === 3) {
+    const year = Number(parts[0]);
+    const month = Number(parts[1]);
+    const day = Number(parts[2]);
+    if (!isNaN(year) && !isNaN(month) && !isNaN(day)) {
+      const date = new Date(year, month - 1, day);
+      if (!isNaN(date.getTime())) {
+        return date.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        });
+      }
+    }
+  }
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return dateString;
+  return date.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
